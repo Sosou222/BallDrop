@@ -109,6 +109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c67fda46e6866b45841eb09c92afa40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteList:
+  - {fileID: 21300000, guid: 84c6e5d1ad7993c4c93597b4ed3c64c8, type: 3}
+  - {fileID: 21300000, guid: dc5c9dd84532ec747819605d66aa92f5, type: 3}
+  - {fileID: 21300000, guid: 3bca45967f4228e4d9cfd4e51683baf8, type: 3}
+  - {fileID: 21300000, guid: e85503e3ec5d0d148be88d3ec4154a1a, type: 3}
+  - {fileID: 21300000, guid: 7cfdd43b446307844ba4a3fc260d026b, type: 3}
+  - {fileID: 21300000, guid: cfbf765636624c348a6eb92baec98628, type: 3}
+  - {fileID: 21300000, guid: 0239621a8db601949b61a690e9c368c2, type: 3}
+  - {fileID: 21300000, guid: 00027fa7d337ef644b0a9a4c80c07639, type: 3}
+  - {fileID: 21300000, guid: a5920b88e6748644999f030004a08732, type: 3}
+  - {fileID: 21300000, guid: e5eba50ddfd56f14680383a1be3b1c2e, type: 3}
 --- !u!1 &5160731868512429926
 GameObject:
   m_ObjectHideFlags: 0

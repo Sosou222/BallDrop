@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class BallGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject ballPrefab;
+    public static BallGenerator Instance { get; private set; }
+
+    private Dictionary<Vector2, int> ballPointAndLevel = new Dictionary<Vector2, int>();
+
+    private void Start()
     {
-        
+        if(Instance != null)
+        {
+            Destroy(this);
+        }
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        GenerateBall();
+    }
+
+    public void AddBallToQueue(Vector2 point,int level)
+    {
+        ballPointAndLevel[point] = level;
+    }
+
+    private void GenerateBall()
+    {
+        foreach(var entry in ballPointAndLevel)
+        {
+            GameObject ballObject = Instantiate(ballPrefab);
+            ballObject.transform.position = entry.Key;
+
+            Ball ball = ballObject.GetComponent<Ball>();
+            ball.SetBallLevel(entry.Value);
+        }
+
+        ballPointAndLevel.Clear();
         
     }
 }
