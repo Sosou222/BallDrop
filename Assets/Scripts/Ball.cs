@@ -31,6 +31,9 @@ public class Ball : MonoBehaviour
         ballLevel = level;
 
         GetComponentInChildren<SpriteRenderer>().sprite = spriteList[level];
+
+        float scale = 0.5f * (level - 1);
+        gameObject.transform.localScale = Vector3.one + new Vector3(scale, scale, 0);
     }
 
     public int GetBallLevel()
