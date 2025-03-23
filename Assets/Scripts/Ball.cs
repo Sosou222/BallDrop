@@ -40,4 +40,9 @@ public class Ball : MonoBehaviour
     {
         return ballLevel;
     }
+
+    public void SetIsSimulated(bool isSimulated)
+    {
+        GetComponent<Rigidbody2D>().simulated = isSimulated;
+    }
 }

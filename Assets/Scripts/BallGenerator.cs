@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class BallGenerator : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class BallGenerator : MonoBehaviour
 
     private void Update()
     {
-        GenerateBall();
+        GenerateBallsInDictionary();
     }
 
     public void AddBallToQueue(Vector2 point,int level)
@@ -28,18 +29,26 @@ public class BallGenerator : MonoBehaviour
         ballPointAndLevel[point] = level;
     }
 
-    private void GenerateBall()
+    private void GenerateBallsInDictionary()
     {
         foreach(var entry in ballPointAndLevel)
         {
-            GameObject ballObject = Instantiate(ballPrefab);
-            ballObject.transform.position = entry.Key;
-
-            Ball ball = ballObject.GetComponent<Ball>();
-            ball.SetBallLevel(entry.Value);
+            GenerateBall(entry.Key, entry.Value, true);
         }
 
         ballPointAndLevel.Clear();
         
+    }
+
+    public Ball GenerateBall(Vector2 point, int level, bool isSimulated)
+    {
+        GameObject ballObject = Instantiate(ballPrefab);
+        ballObject.transform.position = point;
+
+        Ball ball = ballObject.GetComponent<Ball>();
+        ball.SetBallLevel(level);
+        ball.SetIsSimulated(isSimulated);
+
+        return ball;
     }
 }
