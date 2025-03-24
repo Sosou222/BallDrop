@@ -10,8 +10,12 @@ public class Globals
     public delegate void GameOver();
     public static event GameOver OnGameOver;
 
+    public delegate void PauseChanged(bool pause);
+    public static event PauseChanged OnPauseChanged;
+
     private static int score = 0;
     public static bool IsGameOver = false;
+    public static bool IsPaused = false;
 
     public static void AddToScore(int add)
     {
@@ -32,5 +36,11 @@ public class Globals
         {
             OnGameOver?.Invoke();
         }
+    }
+
+    public static void SetPause(bool pause)
+    {
+        IsPaused = pause;
+        OnPauseChanged?.Invoke(IsPaused);
     }
 }

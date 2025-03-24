@@ -9,6 +9,38 @@ public class Ball : MonoBehaviour
     private int ballLevel = 1;
     private const int maxLevel = 10;
 
+    private Vector2 savedVelocity;
+    private float savedAngularVelocity;
+
+    private void Start()
+    {
+        Globals.OnPauseChanged += OnPausedChanged;
+    }
+
+    private void OnDestroy()
+    {
+        Globals.OnPauseChanged -= OnPausedChanged;
+    }
+
+    private void OnPausedChanged(bool paused)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if(paused)
+        {
+            savedVelocity = rb.velocity;
+            savedAngularVelocity = rb.angularVelocity;
+            rb.velocity = new Vector2();
+            rb.angularVelocity = 0.0f;
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+            rb.velocity = savedVelocity;
+            rb.angularVelocity = savedAngularVelocity;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Remove from exclude Layers

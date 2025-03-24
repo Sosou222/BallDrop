@@ -15,7 +15,7 @@ public class BallDropper : MonoBehaviour
 
     void Update()
     {
-        if (Globals.IsGameOver)
+        if (Globals.IsGameOver || Globals.IsPaused)
             return;
 
         UpdatePosition();
@@ -79,7 +79,7 @@ public class BallDropper : MonoBehaviour
         {
             ballHolding.SetIsSimulated(true);
             ballHolding = null;
-            float timerMax = 1.0f;
+            float timerMax = 2.0f;
             timer = timerMax;
         }
     }
