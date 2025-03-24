@@ -15,6 +15,9 @@ public class BallDropper : MonoBehaviour
 
     void Update()
     {
+        if (Globals.IsGameOver)
+            return;
+
         UpdatePosition();
         UpdateTimer();
         SpawnBall();
@@ -76,7 +79,8 @@ public class BallDropper : MonoBehaviour
         {
             ballHolding.SetIsSimulated(true);
             ballHolding = null;
-            timer = 5.0f;
+            float timerMax = 1.0f;
+            timer = timerMax;
         }
     }
 }

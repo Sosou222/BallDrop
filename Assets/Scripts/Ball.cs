@@ -11,7 +11,10 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.TryGetComponent<Ball>(out Ball ball))
+        //Remove from exclude Layers
+        GetComponent<Rigidbody2D>().excludeLayers &= ~(1 << LayerMask.NameToLayer("GameOver"));
+
+        if (collision.gameObject.TryGetComponent<Ball>(out Ball ball))
         {
             if (ballLevel == maxLevel)
                 return;
@@ -26,6 +29,15 @@ public class Ball : MonoBehaviour
             Globals.AddToScore(scoreBallLevelMult * ballLevel);
 
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("GameOver"))
+        {
+            Debug.Log("Entered gameover");
+            Globals.SetGameover(true);
         }
     }
 

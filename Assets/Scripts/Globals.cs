@@ -7,7 +7,11 @@ public class Globals
     public delegate void ScoreChanged(int score);
     public static event ScoreChanged OnScoreChanged;
 
+    public delegate void GameOver();
+    public static event GameOver OnGameOver;
+
     private static int score = 0;
+    public static bool IsGameOver = false;
 
     public static void AddToScore(int add)
     {
@@ -19,5 +23,14 @@ public class Globals
     {
         score = 0;
         OnScoreChanged?.Invoke(score);
+    }
+
+    public static void SetGameover(bool gameOver)
+    {
+        IsGameOver = gameOver;
+        if(IsGameOver == true)
+        {
+            OnGameOver?.Invoke();
+        }
     }
 }

@@ -12,10 +12,6 @@ public class BallGenerator : MonoBehaviour
 
     private void Start()
     {
-        if(Instance != null)
-        {
-            Destroy(this);
-        }
         Instance = this;
     }
 
