@@ -16,6 +16,10 @@ public class PauseMenu : MonoBehaviour
         quitButton.onClick.AddListener(OnQuit);
     }
 
+    private void OnDestroy()
+    {
+        Globals.OnPauseChanged -= OnPauseChanged;
+    }
 
     void Update()
     {

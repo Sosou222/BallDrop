@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Globals;
 
 public class GameOverMenu : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class GameOverMenu : MonoBehaviour
         retryButton.onClick.AddListener(OnRetry);
         quitButton.onClick.AddListener(OnQuit);
         Globals.OnGameOver += OnGameOver;
+    }
+
+    private void OnDestroy()
+    {
+        Globals.OnGameOver -= OnGameOver;
     }
 
     private void OnGameOver()
