@@ -22,6 +22,9 @@ public class Ball : MonoBehaviour
             ContactPoint2D contact = collision.contacts[0];
             BallGenerator.Instance.AddBallToQueue(contact.point, ballLevel + 1);
 
+            int scoreBallLevelMult = 5;
+            Globals.AddToScore(scoreBallLevelMult * ballLevel);
+
             Destroy(gameObject);
         }
     }
